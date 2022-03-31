@@ -29,7 +29,7 @@ namespace Mission13.Controllers
         [HttpGet]
         public IActionResult NewBowler()
         {
-            ViewBag.Teams = _context.Teams.ToList();
+            
             return View();
         }
 
@@ -40,12 +40,12 @@ namespace Mission13.Controllers
             {
                 _context.Add(b);
                 _context.SaveChanges();
-                return View();
+                return View("Index");
 
             }
             else
             {
-                ViewBag.Teams = _context.Teams.ToList();
+                
                 return View(b);
             }
         }
@@ -53,17 +53,28 @@ namespace Mission13.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewBag.Teams = _context.Teams.ToList();
+            
             var bowler = _context.Bowlers.Single(x => x.BowlerID == id);
-            return View("NewBowler", bowler);
+            return View(bowler);
         }
 
         [HttpPost]
         public IActionResult Edit(Bowler b)
         {
-            _context.Update(b);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _context.Update(b);
+                _context.SaveChanges();
+                var blah = _context.Bowlers
+                .ToList();
+                return View("Index", blah);
+
+            }
+            else
+            {
+
+                return View(b);
+            }
         }
         [HttpGet]
         public IActionResult Delete(int id)

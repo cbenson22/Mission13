@@ -15,11 +15,21 @@
     <div asp-validation-summary="All"></div>
     <label>Team</label>
     <select asp-for="TeamID">
-            <option disabled selected value=""> -- select an option -- </option>
-            @foreach (Team t in ViewBag.Teams)
-            {
-                <option value="@t.TeamID">@t.TeamName</option>
-            }
+        <option disabled selected value=""> -- select an option -- </option>
+        <option value="1">Marlins</option>
+        <option value="2">Sharks</option>
+        <option value="3">Terrapins</option>
+        <option value="4">Barracudas</option>
+        <option value="5">Dolphins</option>
+        <option value="6">Orcas</option>
+        <option value="7">Manatees</option>
+        <option value="8">Swordfish</option>
+        <option value="9">Huckleberrys</option>
+        <option value="10">MintJuleps</option>
+       
+
+
+
     </select>
 
     <br />
@@ -41,7 +51,7 @@
     <input asp-for="BowlerCity" />
     <br />
     <label>State</label>
-    <select asp-for="BowlerState">
+    <select asp-for="BowlerState" required>
         <option disabled selected value=""> -- select an option -- </option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
